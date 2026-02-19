@@ -1,69 +1,112 @@
-# Admin CRUD — Reciclaje
+# frontend
 
-Panel de administración CRUD para las tablas del sistema de reciclaje.
+React + Vite frontend for the recycling management system.
 
-## Instalación y arranque
+## Stack
+
+- **React 18** + **Vite 5**
+- Component-based architecture, no external UI library
+- Styles loaded separately via `feat/styles` branch
+
+## Getting started
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Estructura del proyecto
+## Branch strategy
+
+```
+main
+└── dev
+    ├── feat/cover          # Landing page + auth (login modal, AuthContext)
+    ├── feat/coveradmin     # Admin CRUD panel
+    └── feat/styles         # Global styles
+```
+
+All feature branches are children of `dev`. Open PRs against `dev`, never directly against `main`.
+
+## Project structure
 
 ```
 src/
-├── entities.js              # Definición del esquema (tablas, campos, tipos, PKs)
-├── api.js                   # Capa de API — aquí van todos los fetch()
-├── App.jsx                  # Componente raíz + navegación
-└── components/
-    ├── EntitySection.jsx    # Lógica CRUD de una entidad (estado, handlers)
-    ├── EntityForm.jsx       # Formulario genérico de crear/editar
-    └── EntityTable.jsx      # Tabla genérica con acciones
+├── context/
+│   └── AuthContext.jsx     # Auth state, login/logout, role guard
+├── components/
+│   ├── LoginModal.jsx      # Login form modal
+│   ├── EntityForm.jsx      # Generic CRUD form
+│   ├── EntitySection.jsx   # CRUD logic per entity
+│   └── EntityTable.jsx     # Generic records table
+├── pages/
+│   └── Index.jsx           # Landing page
+├── entities.js             # DB schema config (tables, fields, PKs)
+├── api.js                  # All fetch() calls centralised here
+└── main.jsx                # App entry point
 ```
 
-## Cómo conectar al backend PostgreSQL
+## Connecting the backend
 
-Abre `src/api.js` y en cada función:
+### REST API
 
-1. Descomenta la línea `return http(...)`
-2. Elimina las líneas de `_mock`
-3. Ajusta `BASE_URL` a la URL de tu API
+Open `src/api.js` and for each function:
+1. Uncomment the `return http(...)` line
+2. Remove the `_mock` lines
+3. Set `BASE_URL` to your API endpoint
 
 ```js
-// Ejemplo — antes (mock):
+// Before (mock):
 export async function getAll(entity) {
-  _initMock(entity)
   return [..._mock[entity]]
 }
 
-// Después (API real):
+// After (real API):
 export async function getAll(entity) {
   return http('GET', `${BASE_URL}/${entity}`)
 }
 ```
 
-## Añadir o modificar una entidad
+### Authentication
 
-Solo edita `src/entities.js`. Los componentes son completamente genéricos y se adaptan automáticamente a cualquier configuración de campos.
+Open `src/context/AuthContext.jsx` and replace the mock block with the real call:
 
 ```js
-mi_tabla: {
-  label: 'Mi Tabla',
-  pk: 'id_mi_tabla',
+const res = await fetch('/api/auth/login', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ id_usuario, password }),
+})
+const data = await res.json() // { id_usuario, rol, id_aula, token }
+```
+
+Allowed roles: `profesor`, `administrador`. Any other role is rejected at the AuthContext level.
+
+## Adding a new entity
+
+Edit `src/entities.js`. Components are fully generic and adapt automatically.
+
+```js
+my_table: {
+  label: 'My Table',
+  pk: 'id_my_table',
   fields: [
-    { name: 'id_mi_tabla', label: 'ID',    type: 'text',   required: true },
-    { name: 'nombre',      label: 'Nombre', type: 'text',   required: true },
-    { name: 'tipo',        label: 'Tipo',   type: 'enum',   required: true,
-      options: ['a', 'b', 'c'] },
+    { name: 'id_my_table', label: 'ID',     type: 'text', required: true },
+    { name: 'status',      label: 'Status', type: 'enum', required: true,
+      options: ['active', 'inactive'] },
   ],
 }
 ```
 
-### Tipos de campo disponibles
-| type             | Renderiza           |
-|------------------|---------------------|
-| `text`           | `<input type="text">` |
-| `number`         | `<input type="number">` |
-| `datetime-local` | `<input type="datetime-local">` |
-| `enum`           | `<select>` con options |
+Supported field types: `text`, `number`, `datetime-local`, `enum`.
+
+## Commit convention
+
+```
+<type>(<scope>): <description>
+
+feat(cover): add index page with admin login modal
+fix(api): handle 401 response on token expiry
+chore(deps): update vite to 5.4.2
+```
+
+Types: `feat`, `fix`, `refactor`, `chore`, `docs`, `style`.
