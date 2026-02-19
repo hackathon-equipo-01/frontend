@@ -2,10 +2,12 @@ import React from 'react';
 import { useDraggable } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
 
-export function DraggableItem({ id, type, icon, color, label, textColor }) {
+export function DraggableItem({ id, type, icon, color, label, textColor, residueId }) {
     const { attributes, listeners, setNodeRef, transform } = useDraggable({
         id: id,
-        data: { type: type }
+        data: { type: type,
+            residueId: residueId,
+        }
     });
 
     const style = {

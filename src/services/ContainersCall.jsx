@@ -8,12 +8,7 @@ export const getAllContainers = async () => {
 };
 
 export const processWaste = async (idClassroom, idResidue, idContainer) => {
-    const response = await axios.post(`${API_URL}/discarded-waste/classroom/{idClassroom}/residue/{idResidue}/container/{idContainer}`, null, {
-        params: {
-            idClassroom: idClassroom,
-            idResidue: idResidue,
-            idContainer: idContainer
-        }
+    const response = await axios.post(`${API_URL}/discarded-waste/classroom/${idClassroom}/residue/${idResidue}/container/${idContainer}`, null, {
     });
     return response.data;
 };

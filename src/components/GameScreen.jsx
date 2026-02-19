@@ -6,9 +6,10 @@ import { DraggableItem } from './DraggableItem';
 import { getAllContainers, processWaste } from '../services/ContainersCall.jsx';
 
 const itemsToRecycle = [
-    { id: 'item-1', type: 'Papel', icon: '📰', residueId: 1 },
-    { id: 'item-2', type: 'Plástico', icon: '🥤', residueId: 2 },
-    { id: 'item-3', type: 'Vidrio', icon: '🍾', residueId: 3 },
+    { id: 'item-1', label: 'Hoja de papel', icon: '📄', residueId: 1, type: 'Papel' }, 
+    { id: 'item-2', label: 'Botella Agua', icon: '💧', residueId: 3, type: 'Plástico' },
+    { id: 'item-3', label: 'Piel Plátano', icon: '🍌', residueId: 5, type: 'Orgánico' },
+    { id: 'item-4', label: 'Yogur', icon: '🍦', residueId: 7, type: 'Plástico' },
 ];
 
 export default function GameScreen() {
@@ -34,31 +35,30 @@ export default function GameScreen() {
         loadData();
     }, []);
 
-    async function handleDragEnd(event) {
-        const { over, active } = event;
-        if (!over) return;
+async function handleDragEnd(event) {
+    const { over, active } = event;
 
-        const residueId = active.data.current.residueId; 
-        const containerId = over.id;
-        const idClassroom = 1;
+    if (!over) return;
 
-        try {
-            const response = await processWaste(idClassroom, residueId, containerId);
-            
-            if (response.isCorrect) {
-                console.log("¡Backend dice: Es correcto! Puntos:", response.pointsEarned);
-            } else {
-                console.log("¡Backend dice: Error! Restamos puntos:", response.pointsEarned);
-            }
-            
-            const updated = await getAllContainers();
-            setContainers(updated);
+    // Estos IDs ahora vienen de tu base de datos
+    const idResidue = active.data.current.residueId; // El ID de la tabla 'residues'
+    const idContainer = over.id; // El ID de la tabla 'waste_types' (el monstruo)
+    const idClassroom = 1; // Un valor por defecto para tu lógica de aula
 
-        } catch (error) {
-            console.error("Error al procesar el residuo en el servidor:", error);
+    try {
+        // Llamada al servicio que conecta con Axios
+        const response = await processWaste(idClassroom, idResidue, idContainer);
+        
+        if (response.isCorrect) {
+            console.log("¡Genial! El backend ha guardado el acierto.");
+            // Aquí podrías añadir una animación de éxito
+        } else {
+            console.log("¡Ups! El backend dice que no va en ese contenedor.");
         }
+    } catch (error) {
+        console.error("Error al guardar en la base de datos:", error);
     }
-
+}
 
     const getColor = (name) => {
         const n = name.toLowerCase();
