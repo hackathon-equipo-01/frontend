@@ -1,8 +1,14 @@
+<div id="top"></div>
+
 # ♻️ EcoSchool — Waste Management System for Schools
 
 > **Hackathon F5 · February 2026**
 
 A full-stack web application for registering, classifying, and monitoring waste in educational centres. Built with a separated frontend/backend architecture and a REST API.
+
+<a href="#version-española">
+  <img src="https://img.shields.io/badge/🌐%20Versión%20en%20Español-%234CAF50?style=for-the-badge&logoColor=white" alt="Versión en Español"/>
+</a>
 
 ---
 
@@ -272,6 +278,14 @@ chore(deps): update vite to 5.4.2
 ---
 
 ---
+
+<div id="version-española"></div>
+
+---
+
+<a href="#top">
+  <img src="https://img.shields.io/badge/🔼%20Back%20to%20English-%232196F3?style=for-the-badge&logoColor=white" alt="Back to English"/>
+</a>
 
 # ♻️ EcoSchool — Sistema de Gestión de Residuos para Centros Escolares
 
