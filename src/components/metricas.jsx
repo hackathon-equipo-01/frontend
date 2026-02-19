@@ -10,6 +10,7 @@ import {
   YAxis,
   CartesianGrid,
   Label,
+  Cell
 } from "recharts";
 
 import bg from "../images/metrics_bg.png";
