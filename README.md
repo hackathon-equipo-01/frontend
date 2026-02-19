@@ -1,23 +1,56 @@
-# ♻️ EcoSchool — Waste Management System for School
+# ♻️ EcoSchool — Waste Management System for Schools
+
+> **Hackathon F5 · February 2026**
+
 A full-stack web application for registering, classifying, and monitoring waste in educational centres. Built with a separated frontend/backend architecture and a REST API.
+
+---
 
 ## 👥 Authors
 
-| Name 
-|------|--------|
-| Ingrid López | 
-| Cristina Viejó | 
-| Facundo Garavaglia |
-| Xavier Piñeiro | 
-| Sergio Fernandez | 
-| Marlen Alvarez | 
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/identicons/ingrid.png" width="60px" style="border-radius:50%"/><br/>
+      <b>Ingrid López</b><br/>
+      <a href="#">@github</a>
+    </td>
+    <td align="center">
+      <img src="https://github.com/identicons/cristina.png" width="60px" style="border-radius:50%"/><br/>
+      <b>Cristina Viejó</b><br/>
+      <a href="#">@github</a>
+    </td>
+    <td align="center">
+      <img src="https://github.com/identicons/facundo.png" width="60px" style="border-radius:50%"/><br/>
+      <b>Facundo Garavaglia</b><br/>
+      <a href="#">@github</a>
+    </td>
+    <td align="center">
+      <img src="https://github.com/identicons/xavier.png" width="60px" style="border-radius:50%"/><br/>
+      <b>Xavier Piñeiro</b><br/>
+      <a href="#">@github</a>
+    </td>
+    <td align="center">
+      <img src="https://github.com/identicons/sergio.png" width="60px" style="border-radius:50%"/><br/>
+      <b>Sergio Fernandez</b><br/>
+      <a href="#">@github</a>
+    </td>
+    <td align="center">
+      <img src="https://github.com/identicons/marlen.png" width="60px" style="border-radius:50%"/><br/>
+      <b>Marlen Alvarez</b><br/>
+      <a href="#">@github</a>
+    </td>
+  </tr>
+</table>
+
+---
 
 ## 🔗 Resources
 
 - 🎨 [Figma Design](https://www.figma.com/design/Ns9KGkITG36xOT2dVi5REh/Hackaton?t=iiXZSyrW7DVWi2eT-0)
 - 🗄️ [Database Diagram](https://drive.google.com/file/d/19e2ulCx6UqVhS5MPr8ZJvVckunWT7mFJ/view)
 
-
+---
 
 ## 📋 Table of Contents
 
@@ -31,6 +64,7 @@ A full-stack web application for registering, classifying, and monitoring waste 
 - [Admin CRUD Panel](#admin-crud-panel)
 - [Commit Convention](#commit-convention)
 
+---
 
 ## Overview
 
@@ -42,6 +76,7 @@ EcoSchool allows schools to:
 - Trigger alerts when thresholds are exceeded
 - Manage data through a role-protected admin panel
 
+---
 
 ## Tech Stack
 
@@ -54,29 +89,41 @@ EcoSchool allows schools to:
 | Styles | Custom CSS (`feat/styles` branch) |
 | Testing | Unit tests · ≥75% coverage |
 
+---
 
+## 🗂️ Project Structure
 
-## Project Structure
+```
+♻️ EcoSchool/
+│
+├── 🖥️  frontend/
+│   ├── src/
+│   │   ├── context/
+│   │   │   └── AuthContext.jsx       # Auth state · login/logout · role guard
+│   │   │
+│   │   ├── components/
+│   │   │   ├── LoginModal.jsx        # Login form modal
+│   │   │   ├── EntityForm.jsx        # Generic CRUD form
+│   │   │   ├── EntitySection.jsx     # CRUD logic per entity
+│   │   │   └── EntityTable.jsx       # Generic records table with actions
+│   │   │
+│   │   ├── pages/
+│   │   │   └── Index.jsx             # Landing page
+│   │   │
+│   │   ├── entities.js               # DB schema config (tables · fields · PKs)
+│   │   ├── api.js                    # All fetch() calls centralised here
+│   │   └── main.jsx                  # App entry point
+│   │
+│   └── package.json
+│
+└── ⚙️  backend/
+    ├── routes/                       # REST API route definitions
+    ├── controllers/                  # Business logic handlers
+    ├── models/                       # Database models
+    └── ...
+```
 
-
-root/
-├── frontend/
-│   └── src/
-│       ├── context/
-│       │   └── AuthContext.jsx       # Auth state, login/logout, role guard
-│       ├── components/
-│       │   ├── LoginModal.jsx        # Login form modal
-│       │   ├── EntityForm.jsx        # Generic CRUD form
-│       │   ├── EntitySection.jsx     # CRUD logic per entity
-│       │   └── EntityTable.jsx       # Generic records table with actions
-│       ├── pages/
-│       │   └── Index.jsx             # Landing page
-│       ├── entities.js               # DB schema config (tables, fields, PKs)
-│       ├── api.js                    # All fetch() calls centralised here
-│       └── main.jsx                  # App entry point
-└── backend/
-    └── ...                           # Controllers, routes, models
-
+---
 
 ## Getting Started
 
@@ -86,27 +133,30 @@ root/
 cd frontend
 npm install
 npm run dev
-
+```
 
 ### Backend
 
 ```bash
 cd backend
 # Follow backend-specific setup instructions
+```
 
+---
 
 ## Branch Strategy
 
-
+```
 main
 └── dev
     ├── feat/cover          # Landing page + auth (login modal, AuthContext)
     ├── feat/coveradmin     # Admin CRUD panel
     └── feat/styles         # Global styles
-
+```
 
 All feature branches are children of `dev`. Open PRs against `dev`, **never** directly against `main`.
 
+---
 
 ## API & Authentication
 
@@ -128,6 +178,7 @@ export async function getAll(entity) {
 export async function getAll(entity) {
   return http('GET', `${BASE_URL}/${entity}`)
 }
+```
 
 ### Authentication
 
@@ -140,10 +191,11 @@ const res = await fetch('/api/auth/login', {
   body: JSON.stringify({ id_usuario, password }),
 })
 const data = await res.json() // { id_usuario, rol, id_aula, token }
-
+```
 
 Allowed roles: `profesor`, `administrador`. Any other role is rejected at the `AuthContext` level.
 
+---
 
 ## Adding Entities
 
@@ -160,6 +212,7 @@ my_table: {
     { name: 'count',       label: 'Count',  type: 'number', required: false },
   ],
 }
+```
 
 ### Supported Field Types
 
@@ -169,6 +222,8 @@ my_table: {
 | `number` | `<input type="number">` |
 | `datetime-local` | `<input type="datetime-local">` |
 | `enum` | `<select>` with options |
+
+---
 
 ## Admin CRUD Panel
 
@@ -192,6 +247,8 @@ export async function getAll(entity) {
 ```
 
 Set `BASE_URL` to your deployed or local API endpoint.
+
+---
 
 ## Commit Convention
 
@@ -218,20 +275,48 @@ chore(deps): update vite to 5.4.2
 
 # ♻️ EcoSchool — Sistema de Gestión de Residuos para Centros Escolares
 
+> **Hackathon F5 · Febrero 2026**
+
 Aplicación web full-stack para registrar, clasificar y monitorizar residuos en centros educativos. Construida con arquitectura frontend/backend separada y comunicación mediante API REST.
 
 ---
 
 ## 👥 Autores
 
-| Nombre | GitHub |
-|--------|--------|
-| Ingrid López | — |
-| Cristina Viejó | — |
-| Facundo Garavaglia | — |
-| Xavier Piñeiro | — |
-| Sergio Fernandez | — |
-| Marlen Alvarez | — |
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/identicons/ingrid.png" width="60px" style="border-radius:50%"/><br/>
+      <b>Ingrid López</b><br/>
+      <a href="#">@github</a>
+    </td>
+    <td align="center">
+      <img src="https://github.com/identicons/cristina.png" width="60px" style="border-radius:50%"/><br/>
+      <b>Cristina Viejó</b><br/>
+      <a href="#">@github</a>
+    </td>
+    <td align="center">
+      <img src="https://github.com/identicons/facundo.png" width="60px" style="border-radius:50%"/><br/>
+      <b>Facundo Garavaglia</b><br/>
+      <a href="#">@github</a>
+    </td>
+    <td align="center">
+      <img src="https://github.com/identicons/xavier.png" width="60px" style="border-radius:50%"/><br/>
+      <b>Xavier Piñeiro</b><br/>
+      <a href="#">@github</a>
+    </td>
+    <td align="center">
+      <img src="https://github.com/identicons/sergio.png" width="60px" style="border-radius:50%"/><br/>
+      <b>Sergio Fernandez</b><br/>
+      <a href="#">@github</a>
+    </td>
+    <td align="center">
+      <img src="https://github.com/identicons/marlen.png" width="60px" style="border-radius:50%"/><br/>
+      <b>Marlen Alvarez</b><br/>
+      <a href="#">@github</a>
+    </td>
+  </tr>
+</table>
 
 ---
 
@@ -281,26 +366,36 @@ EcoSchool permite a los centros escolares:
 
 ---
 
-## Estructura del proyecto
+## 🗂️ Estructura del proyecto
 
 ```
-root/
-├── frontend/
-│   └── src/
-│       ├── context/
-│       │   └── AuthContext.jsx       # Estado de auth, login/logout, guardia de roles
-│       ├── components/
-│       │   ├── LoginModal.jsx        # Modal de inicio de sesión
-│       │   ├── EntityForm.jsx        # Formulario CRUD genérico
-│       │   ├── EntitySection.jsx     # Lógica CRUD por entidad
-│       │   └── EntityTable.jsx       # Tabla genérica con acciones
-│       ├── pages/
-│       │   └── Index.jsx             # Página de inicio
-│       ├── entities.js               # Configuración del esquema de BD
-│       ├── api.js                    # Todas las llamadas fetch() centralizadas
-│       └── main.jsx                  # Punto de entrada de la app
-└── backend/
-    └── ...                           # Controladores, rutas, modelos
+♻️ EcoSchool/
+│
+├── 🖥️  frontend/
+│   ├── src/
+│   │   ├── context/
+│   │   │   └── AuthContext.jsx       # Estado de auth · login/logout · guardia de roles
+│   │   │
+│   │   ├── components/
+│   │   │   ├── LoginModal.jsx        # Modal de inicio de sesión
+│   │   │   ├── EntityForm.jsx        # Formulario CRUD genérico
+│   │   │   ├── EntitySection.jsx     # Lógica CRUD por entidad
+│   │   │   └── EntityTable.jsx       # Tabla genérica con acciones
+│   │   │
+│   │   ├── pages/
+│   │   │   └── Index.jsx             # Página de inicio
+│   │   │
+│   │   ├── entities.js               # Configuración del esquema de BD
+│   │   ├── api.js                    # Todas las llamadas fetch() centralizadas
+│   │   └── main.jsx                  # Punto de entrada de la app
+│   │
+│   └── package.json
+│
+└── ⚙️  backend/
+    ├── routes/                       # Definición de rutas REST
+    ├── controllers/                  # Controladores de lógica de negocio
+    ├── models/                       # Modelos de base de datos
+    └── ...
 ```
 
 ---
