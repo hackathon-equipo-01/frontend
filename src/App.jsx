@@ -1,30 +1,16 @@
-import { ENTITIES } from './entities'
-import EntitySection from './components/EntitySection'
+import React from 'react';
+import { BrowserRouter, Routes, Route,  } from 'react-router-dom';
+import './index.css';
+import GameScreen from './components/GameScreen.jsx';
+import Home from './Home.jsx';
 
 export default function App() {
-  const entityKeys = Object.keys(ENTITIES)
-
   return (
-    <div>
-      <h1>Panel de Administración</h1>
-
-      <nav>
-        {entityKeys.map((key, i) => (
-          <span key={key}>
-            <a href={`#section-${key}`}>{ENTITIES[key].label}</a>
-            {i < entityKeys.length - 1 && ' | '}
-          </span>
-        ))}
-      </nav>
-
-      <hr />
-
-      {entityKeys.map(key => (
-        <div key={key}>
-          <EntitySection entityKey={key} config={ENTITIES[key]} />
-          <hr />
-        </div>
-      ))}
-    </div>
-  )
+    <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/juego" element={<GameScreen />} />
+        </Routes>
+    </BrowserRouter>
+  );
 }
