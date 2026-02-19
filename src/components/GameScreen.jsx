@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { DndContext, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
 import { DroppableZone } from './DroppableZone';
 import { DraggableItem } from './DraggableItem';
+import bg from "../images/metrics_bg.png";
 
 import { getAllContainers, processWaste } from '../services/ContainersCall.jsx';
 
@@ -63,7 +64,7 @@ export default function GameScreen() {
     const getColor = (name) => {
         const n = name.toLowerCase();
         if (n.includes('cartón')) return 'bg-blue-400';
-        if (n.includes('plástico')) return 'bg-yellow-400';
+        if (n.includes('plástico')) return 'bg-red-400';
         if (n.includes('vidrio')) return 'bg-green-400';
         return 'bg-gray-400';
     };
@@ -72,7 +73,15 @@ export default function GameScreen() {
 
     return (
         <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
-            <div className="min-h-screen bg-[#FFFBEB] p-4 flex flex-col items-center">
+           <div
+  className="min-h-screen w-full p-4 flex flex-col items-center"
+  style={{
+    backgroundImage: `url(${bg})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+  }}
+>
                 <div className="flex gap-4 mb-20">
                     {containers.map((monster) => (
                         <DroppableZone key={monster.id} id={monster.id}>
