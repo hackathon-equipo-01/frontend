@@ -17,34 +17,46 @@ A full-stack web application for registering, classifying, and monitoring waste 
 <table>
   <tr>
     <td align="center">
-      <img src="https://github.com/identicons/ingrid.png" width="60px" style="border-radius:50%"/><br/>
-      <b>Ingrid López</b><br/>
-      <a href="#">@github</a>
+      <a href="https://github.com/Nuclea88">
+        <img src="https://github.com/Nuclea88.png" width="80px" style="border-radius:50%"/><br/>
+        <b>Ingrid López</b><br/>
+        <sub>@Nuclea88</sub>
+      </a>
     </td>
     <td align="center">
-      <img src="https://github.com/identicons/cristina.png" width="60px" style="border-radius:50%"/><br/>
-      <b>Cristina Viejó</b><br/>
-      <a href="#">@github</a>
+      <a href="https://github.com/krissvinti-ux">
+        <img src="https://github.com/krissvinti-ux.png" width="80px" style="border-radius:50%"/><br/>
+        <b>Cristina Viejó</b><br/>
+        <sub>@krissvinti-ux</sub>
+      </a>
     </td>
     <td align="center">
-      <img src="https://github.com/identicons/facundo.png" width="60px" style="border-radius:50%"/><br/>
-      <b>Facundo Garavaglia</b><br/>
-      <a href="#">@github</a>
+      <a href="https://github.com/FacundoGaOl">
+        <img src="https://github.com/FacundoGaOl.png" width="80px" style="border-radius:50%"/><br/>
+        <b>Facundo Garavaglia</b><br/>
+        <sub>@FacundoGaOl</sub>
+      </a>
     </td>
     <td align="center">
-      <img src="https://github.com/identicons/xavier.png" width="60px" style="border-radius:50%"/><br/>
-      <b>Xavier Piñeiro</b><br/>
-      <a href="#">@github</a>
+      <a href="https://github.com/gzifoto-spec">
+        <img src="https://github.com/gzifoto-spec.png" width="80px" style="border-radius:50%"/><br/>
+        <b>Xavier Piñeiro</b><br/>
+        <sub>@gzifoto-spec</sub>
+      </a>
     </td>
     <td align="center">
-      <img src="https://github.com/identicons/sergio.png" width="60px" style="border-radius:50%"/><br/>
-      <b>Sergio Fernandez</b><br/>
-      <a href="#">@github</a>
+      <a href="https://github.com/Sergiofer1994">
+        <img src="https://github.com/Sergiofer1994.png" width="80px" style="border-radius:50%"/><br/>
+        <b>Sergio Fernandez</b><br/>
+        <sub>@Sergiofer1994</sub>
+      </a>
     </td>
     <td align="center">
-      <img src="https://github.com/identicons/marlen.png" width="60px" style="border-radius:50%"/><br/>
-      <b>Marlen Alvarez</b><br/>
-      <a href="#">@github</a>
+      <a href="https://github.com/alvarezmarlen">
+        <img src="https://github.com/alvarezmarlen.png" width="80px" style="border-radius:50%"/><br/>
+        <b>Marlen Alvarez</b><br/>
+        <sub>@alvarezmarlen</sub>
+      </a>
     </td>
   </tr>
 </table>
@@ -300,34 +312,46 @@ Aplicación web full-stack para registrar, clasificar y monitorizar residuos en 
 <table>
   <tr>
     <td align="center">
-      <img src="https://github.com/identicons/ingrid.png" width="60px" style="border-radius:50%"/><br/>
-      <b>Ingrid López</b><br/>
-      <a href="#">@github</a>
+      <a href="https://github.com/Nuclea88">
+        <img src="https://github.com/Nuclea88.png" width="80px" style="border-radius:50%"/><br/>
+        <b>Ingrid López</b><br/>
+        <sub>@Nuclea88</sub>
+      </a>
     </td>
     <td align="center">
-      <img src="https://github.com/identicons/cristina.png" width="60px" style="border-radius:50%"/><br/>
-      <b>Cristina Viejó</b><br/>
-      <a href="#">@github</a>
+      <a href="https://github.com/krissvinti-ux">
+        <img src="https://github.com/krissvinti-ux.png" width="80px" style="border-radius:50%"/><br/>
+        <b>Cristina Viejó</b><br/>
+        <sub>@krissvinti-ux</sub>
+      </a>
     </td>
     <td align="center">
-      <img src="https://github.com/identicons/facundo.png" width="60px" style="border-radius:50%"/><br/>
-      <b>Facundo Garavaglia</b><br/>
-      <a href="#">@github</a>
+      <a href="https://github.com/FacundoGaOl">
+        <img src="https://github.com/FacundoGaOl.png" width="80px" style="border-radius:50%"/><br/>
+        <b>Facundo Garavaglia</b><br/>
+        <sub>@FacundoGaOl</sub>
+      </a>
     </td>
     <td align="center">
-      <img src="https://github.com/identicons/xavier.png" width="60px" style="border-radius:50%"/><br/>
-      <b>Xavier Piñeiro</b><br/>
-      <a href="#">@github</a>
+      <a href="https://github.com/gzifoto-spec">
+        <img src="https://github.com/gzifoto-spec.png" width="80px" style="border-radius:50%"/><br/>
+        <b>Xavier Piñeiro</b><br/>
+        <sub>@gzifoto-spec</sub>
+      </a>
     </td>
     <td align="center">
-      <img src="https://github.com/identicons/sergio.png" width="60px" style="border-radius:50%"/><br/>
-      <b>Sergio Fernandez</b><br/>
-      <a href="#">@github</a>
+      <a href="https://github.com/Sergiofer1994">
+        <img src="https://github.com/Sergiofer1994.png" width="80px" style="border-radius:50%"/><br/>
+        <b>Sergio Fernandez</b><br/>
+        <sub>@Sergiofer1994</sub>
+      </a>
     </td>
     <td align="center">
-      <img src="https://github.com/identicons/marlen.png" width="60px" style="border-radius:50%"/><br/>
-      <b>Marlen Alvarez</b><br/>
-      <a href="#">@github</a>
+      <a href="https://github.com/alvarezmarlen">
+        <img src="https://github.com/alvarezmarlen.png" width="80px" style="border-radius:50%"/><br/>
+        <b>Marlen Alvarez</b><br/>
+        <sub>@alvarezmarlen</sub>
+      </a>
     </td>
   </tr>
 </table>
