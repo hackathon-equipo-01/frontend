@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDroppable } from '@dnd-kit/core';
 
-export function DroppableZone({ children }) {
+export function DroppableZone({ id, children }) {
   const { isOver, setNodeRef } = useDroppable({
-    id: 'monster-droppable',
+    id: id,
   });
 
   const style = {
