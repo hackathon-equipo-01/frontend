@@ -8,49 +8,52 @@ export const ALLOWED_ROLES = ['profesor', 'administrador']
 const AuthContext = createContext(null)
 
 export function AuthProvider({ children }) {
-  const [user, setUser]     = useState(null)  // { id_usuario, rol, id_aula }
+  const [user, setUser]     = useState(null) 
   const [error, setError]   = useState('')
   const [loading, setLoading] = useState(false)
 
-  async function login(id_usuario, password) {
+  async function login(email, password) {
     setError('')
     setLoading(true)
 
     try {
-      // ── TODO: sustituir por llamada real a la API ──────────────────────
-      // const res = await fetch('/api/auth/login', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ id_usuario, password }),
-      // })
-      // if (!res.ok) throw new Error('Credenciales incorrectas')
-      // const data = await res.json()  // { id_usuario, rol, id_aula, token }
-      // ──────────────────────────────────────────────────────────────────
-
-      // Mock temporal — eliminar cuando esté el backend
-      const MOCK_USERS = [
-        { id_usuario: 'prof_01',  rol: 'profesor',       id_aula: 'aula_1', password: '1234' },
-        { id_usuario: 'admin_01', rol: 'administrador',  id_aula: null,     password: '1234' },
-      ]
-      const found = MOCK_USERS.find(
-        u => u.id_usuario === id_usuario && u.password === password
-      )
-      if (!found) throw new Error('Credenciales incorrectas')
-      const { password: _, ...data } = found
-      // ── fin mock ──────────────────────────────────────────────────────
-
-      // Verificar que el rol tiene acceso
-      if (!ALLOWED_ROLES.includes(data.rol)) {
-        throw new Error('No tienes permisos para acceder al panel')
+      const res = await fetch('http://localhost:8080/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+      })
+      if (!res.ok) { 
+      const errorData = await res.text()  
+        throw new Error(errorData || 'Credenciales incorrectas')
       }
 
-      setUser(data)
-      // TODO: guardar token en httpOnly cookie o localStorage según estrategia
-      return { ok: true, user: data }
+      const newData = await res.json()
+
+      const userData = {
+        id_usuario: newData.id,
+        nombre: newData.name,
+        rol: newData.role.toLowerCase(), 
+        id_aula: newData.classroomId
+      };
+
+      let rolParaVerificar = userData.rol;
+      if (userData.rol === 'teacher') rolParaVerificar = 'profesor';
+      if (userData.rol === 'admin') rolParaVerificar = 'administrador';
+      
+      if (!ALLOWED_ROLES.includes(rolParaVerificar)) {
+        throw new Error('No tienes permisos para acceder al panel');
+      }
+
+      setUser(userData);
+      return { ok: true, user: userData }
 
     } catch (e) {
-      setError(e.message)
-      return { ok: false, error: e.message }
+      const cleanMessage = e.message.includes('<!DOCTYPE html>') 
+        ? "El servidor no responde correctamente" 
+        : e.message;
+    
+    setError(cleanMessage);
+    return { ok: false, error: cleanMessage };
     } finally {
       setLoading(false)
     }
@@ -59,7 +62,6 @@ export function AuthProvider({ children }) {
   function logout() {
     setUser(null)
     setError('')
-    // TODO: invalidar token en backend / limpiar cookie
   }
 
   return (

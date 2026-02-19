@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useAuth } from "./context/AuthContext";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 import bg from "./images/image.png";
@@ -7,6 +9,9 @@ import btnContenedores from "./images/image4.png";
 
 
 export default function Home() {
+    const { login } = useAuth();
+    const navigate = useNavigate();
+
     const buttonBase =
         "shrink-0 block rounded-2xl hover:scale-105 active:scale-95 transition-transform duration-150";
 
@@ -39,12 +44,22 @@ export default function Home() {
         return () => window.removeEventListener("keydown", onKeyDown);
     }, [isLoginOpen]);
 
-    const handleEnter = (e) => {
+    const handleEnter = async (e) => {
         e.preventDefault();
-        console.log("Login:", { email, password });
-        closeLogin();
-    };
+        const result = await login(email, password);
 
+    if (result && result.ok) {
+            console.log("Login exitoso en Home:", result.user);
+            closeLogin();
+    if (result.user.rol === 'profesor') {
+                navigate("/metricas");
+            } else {
+                navigate("/juego");
+            }
+        } else {
+            alert(result?.error || "Error desconocido");
+        }
+    };
 return (
      <div
       className="min-h-screen w-full flex flex-col items-center justify-start pt-6 sm:pt-8"
