@@ -8,7 +8,6 @@ export default function Home() {
         ECO-MONSTRUOS
       </h1>
       
-      {/* Botón con estilo mejorado para el briefing */}
       <Link 
         to="/juego" 
         className="px-10 py-5 bg-green-500 text-white rounded-full font-bold shadow-xl hover:bg-green-600 transition-all hover:scale-105 active:scale-95 text-xl border-b-4 border-green-700"
