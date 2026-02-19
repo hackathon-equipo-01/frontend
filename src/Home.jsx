@@ -67,7 +67,7 @@ return (
             <span className="sr-only">Contenedores</span>
                 </Link>
                 <Link
-                    to="/metricas"
+                    to="/Metricas"
                     className={buttonBase}
                     style={{ ...buttonStyle(btnMetricas), width: BTN_W, height: BTN_H }}
                     aria-label="Panel de métricas"
