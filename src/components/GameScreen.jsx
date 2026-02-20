@@ -6,6 +6,7 @@ import { DroppableZone } from './DroppableZone';
 import { DraggableItem } from './DraggableItem';
 import { getAllContainers, processWaste } from '../services/ContainersCall.jsx';
 import axios from 'axios';
+import bg from "../images/metrics_bg.png";
 
 export default function GameScreen() {
     const { user } = useAuth();
@@ -126,8 +127,16 @@ const undoAction = async (actionId, pts) => {
 
     return (
         <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
-            <div className="min-h-screen bg-[#FFFBEB] pt-10 p-4 flex flex-col items-center">
-                
+            {/* <div className="min-h-screen bg-[#FFFBEB] pt-10 p-4 flex flex-col items-center"> */}
+            <div
+                className="min-h-screen w-full p-4 flex flex-col items-center"
+                style={{
+                    backgroundImage: `url(${bg})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                }}
+                >
                 {feedback.msg && (
                     <div className="fixed top-24 z-[100] animate-bounce bg-white border-2 px-8 py-3 rounded-full shadow-2xl font-black text-xl">
                         <span className={feedback.color}>{feedback.msg}</span>
