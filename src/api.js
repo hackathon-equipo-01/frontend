@@ -1,58 +1,24 @@
-// ─────────────────────────────────────────────────────────────
-// Capa de API — sustituye BASE_URL por la URL de tu backend.
-// Todas las operaciones CRUD pasan por aquí.
-// Actualmente usa un store en memoria como mock.
-// ─────────────────────────────────────────────────────────────
 
-const BASE_URL = '/api' // Cambia esto por tu endpoint real
+const BASE_URL = 'http://localhost:8080/api';
 
-// ── MOCK en memoria (elimina esto cuando conectes el backend) ──
-const _mock = {}
 
-function _initMock(entity) {
-  if (!_mock[entity]) _mock[entity] = []
+async function http(method, endpoint, body) {
+    const res = await fetch(`${BASE_URL}${endpoint}`, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: body ? JSON.stringify(body) : undefined,
+    });
+    
+    if (!res.ok) {
+        const msg = await res.text();
+        throw new Error(msg || `Error ${res.status}`);
+    }
+
+    if (res.status === 204) return null;
+    return res.json();
 }
 
-// ── Helpers ──
-async function http(method, url, body) {
-  const res = await fetch(url, {
-    method,
-    headers: { 'Content-Type': 'application/json' },
-    body: body ? JSON.stringify(body) : undefined,
-  })
-  if (!res.ok) throw new Error(`${method} ${url} → ${res.status}`)
-  return res.json()
-}
-
-// ─────────────────────────────────────────────────────────────
-// CRUD GENÉRICO
-// Cambia cada función para usar http() en lugar de _mock
-// ─────────────────────────────────────────────────────────────
-
-export async function getAll(entity) {
-  // return http('GET', `${BASE_URL}/${entity}`)
-  _initMock(entity)
-  return [..._mock[entity]]
-}
-
-export async function create(entity, data) {
-  // return http('POST', `${BASE_URL}/${entity}`, data)
-  _initMock(entity)
-  _mock[entity].push({ ...data })
-  return { ...data }
-}
-
-export async function update(entity, pk, pkValue, data) {
-  // return http('PUT', `${BASE_URL}/${entity}/${pkValue}`, data)
-  _initMock(entity)
-  const idx = _mock[entity].findIndex(r => r[pk] === pkValue)
-  if (idx !== -1) _mock[entity][idx] = { ...data }
-  return { ...data }
-}
-
-export async function remove(entity, pk, pkValue) {
-  // return http('DELETE', `${BASE_URL}/${entity}/${pkValue}`)
-  _initMock(entity)
-  _mock[entity] = _mock[entity].filter(r => r[pk] !== pkValue)
-  return { ok: true }
-}
+export const getAll = (entity) => http('GET', `/${entity}`);
+export const create = (entity, data) => http('POST', `/${entity}`, data);
+export const update = (entity, pk, pkValue, data) => http('PUT', `/${entity}/${pkValue}`, data);
+export const remove = (entity, pk, pkValue) => http('DELETE', `/${entity}/${pkValue}`);

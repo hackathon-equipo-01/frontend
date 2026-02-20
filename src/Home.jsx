@@ -7,7 +7,6 @@ import bg from "./images/image.png";
 import btnMetricas from "./images/image5.png";
 import btnContenedores from "./images/image4.png";
 
-
 export default function Home() {
     const { login } = useAuth();
     const navigate = useNavigate();

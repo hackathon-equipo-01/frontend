@@ -1,8 +1,4 @@
-//El mock temporal usa id_usuario: 'prof_01' y admin_01 con password 1234
-
 import { createContext, useContext, useState } from 'react'
-
-// Roles con acceso al panel de administración
 export const ALLOWED_ROLES = ['profesor', 'administrador']
 
 const AuthContext = createContext(null)

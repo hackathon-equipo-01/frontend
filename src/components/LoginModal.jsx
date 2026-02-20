@@ -19,7 +19,7 @@ export default function LoginModal({ onClose, onSuccess }) {
   }
 
   return (
-    // Overlay — clic fuera cierra el modal
+
     <div
       onClick={e => e.target === e.currentTarget && onClose()}
       style={{ position: 'fixed', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
