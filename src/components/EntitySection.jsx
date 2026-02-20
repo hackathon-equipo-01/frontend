@@ -5,10 +5,9 @@ import { getAll, create, update, remove } from '../api'
 
 export default function EntitySection({ entityKey, config }) {
   const [records, setRecords]     = useState([])
-  const [editing, setEditing]     = useState(null)  // null = modo crear
+  const [editing, setEditing]     = useState(null)  
   const [error, setError]         = useState('')
 
-  // ── LOAD ──
   const load = useCallback(async () => {
     try {
       const data = await getAll(entityKey)
@@ -20,14 +19,14 @@ export default function EntitySection({ entityKey, config }) {
 
   useEffect(() => { load() }, [load])
 
-  // ── SAVE (create or update) ──
+
   async function handleSave(formData) {
     setError('')
     try {
       if (editing) {
         await update(entityKey, config.pk, editing[config.pk], formData)
       } else {
-        // Validar PK duplicada
+        
         if (records.find(r => r[config.pk] === formData[config.pk])) {
           setError(`Ya existe un registro con ${config.pk} = "${formData[config.pk]}"`)
           return
@@ -41,7 +40,6 @@ export default function EntitySection({ entityKey, config }) {
     }
   }
 
-  // ── DELETE ──
   async function handleDelete(pkValue) {
     if (!confirm(`¿Eliminar el registro con ID "${pkValue}"?`)) return
     setError('')

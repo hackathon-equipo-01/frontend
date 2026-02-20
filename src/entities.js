@@ -1,5 +1,3 @@
-// Configuración de cada entidad: PK, campos y tipo de cada campo.
-// Modifica aquí si cambia el esquema.
 
 export const ENTITIES = {
   usuarios: {

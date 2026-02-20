@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 
-// Genera el valor inicial vacío para un registro
 function emptyRecord(fields) {
   return Object.fromEntries(fields.map(f => [f.name, '']))
 }
@@ -8,7 +7,6 @@ function emptyRecord(fields) {
 export default function EntityForm({ config, editingRecord, onSave, onCancel }) {
   const [form, setForm] = useState(emptyRecord(config.fields))
 
-  // Cuando llega un registro a editar, rellena el formulario
   useEffect(() => {
     setForm(editingRecord ? { ...editingRecord } : emptyRecord(config.fields))
   }, [editingRecord, config])
@@ -52,7 +50,7 @@ export default function EntityForm({ config, editingRecord, onSave, onCancel }) 
               value={form[field.name]}
               onChange={handleChange}
               required={field.required}
-              // PK bloqueada en modo edición
+          
               readOnly={isEditing && field.name === config.pk}
             />
           )}

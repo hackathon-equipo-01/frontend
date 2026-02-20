@@ -12,3 +12,17 @@ export const processWaste = async (idClassroom, idResidue, idContainer) => {
     });
     return response.data;
 };
+
+export const getAllResidues = async () => {
+    const response = await axios.get(`${API_URL}/residues`);
+    return response.data; 
+};
+
+export const deleteDiscardedWaste = async (id) => {
+    return await axios.delete(`${API_URL}/discarded-waste/${id}`);
+};
+
+export const getStats = async () => {
+    const response = await axios.get('http://localhost:8080/api/discarded-waste/stats');
+    return response.data;
+};
