@@ -127,7 +127,6 @@ const undoAction = async (actionId, pts) => {
 
     return (
         <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
-            {/* <div className="min-h-screen bg-[#FFFBEB] pt-10 p-4 flex flex-col items-center"> */}
             <div
                 className="min-h-screen w-full p-4 flex flex-col items-center"
                 style={{

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
-import { useAuth } from "../context/AuthContext"; // <--- ESTO FALTABA
+import { useAuth } from "../context/AuthContext";
 import {
   ResponsiveContainer,
   PieChart,
@@ -18,7 +18,7 @@ import {
 import bg from "../images/metrics_bg.png";
 
 export default function Metricas() {
-  const { user } = useAuth(); // <--- Y ESTO TAMBIÉN
+  const { user } = useAuth();
   const [stats, setStats] = useState({ Carton: 0, Organico: 0, Plastico: 0, Banal: 0 });
   const [loading, setLoading] = useState(true);
 
@@ -48,10 +48,10 @@ export default function Metricas() {
   const total = stats.Carton + stats.Organico + stats.Plastico + stats.Banal;
 
   const COLORS = {
-    plastico: "#FBBF24", // Amarillo
-    organico: "#22C55E", // Verde
-    carton: "#00D4FF",   // Azul
-    banal: "#FF3EA5",    // Rosa/Gris
+    plastico: "#FBBF24",
+    organico: "#22C55E", 
+    carton: "#00D4FF", 
+    banal: "#FF3EA5",
   };
 
   const pieData = useMemo(() => [
@@ -76,7 +76,6 @@ export default function Metricas() {
           <p className="text-slate-400 font-bold uppercase text-sm tracking-widest">Estadísticas reales del aula</p>
         </div>
 
-        {/* --- TARJETAS KPI (ESTO ARREGLA EL DESPLAZAMIENTO) --- */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           <StatCard label="Tasa Acierto" value="78%" color="text-green-400" />
           <StatCard label="CO2 Evitado" value={`${(total * 0.45).toFixed(1)}kg`} color="text-sky-400" />
@@ -85,7 +84,6 @@ export default function Metricas() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          {/* Tarta */}
           <div className="lg:col-span-5 rounded-3xl bg-slate-900/60 border border-white/10 p-6 backdrop-blur-xl">
             <h2 className="text-xl font-black mb-6">Impacto por Residuo</h2>
             <div className="h-[300px]">
@@ -106,7 +104,6 @@ export default function Metricas() {
             </div>
           </div>
 
-          {/* Barras */}
           <div className="lg:col-span-7 rounded-3xl bg-slate-900/60 border border-white/10 p-6 backdrop-blur-xl">
             <h2 className="text-xl font-black mb-6">Comparativa Global</h2>
             <div className="h-[300px]">
@@ -129,7 +126,6 @@ export default function Metricas() {
   );
 }
 
-// Subcomponentes auxiliares para limpiar el código principal
 function StatCard({ label, value, color }) {
   return (
     <div className="bg-slate-900/40 border border-white/5 p-5 rounded-2xl backdrop-blur-sm shadow-xl flex flex-col items-center">

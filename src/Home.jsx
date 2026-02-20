@@ -60,8 +60,8 @@ export default function Home() {
         }
     };
 return (
-     <div
-      className="min-h-screen w-full flex flex-col items-center justify-start pt-6 sm:pt-8"
+    <div
+        className="min-h-screen w-full flex flex-col items-center justify-start pt-6 sm:pt-8"
             style={{
                 backgroundImage: `url(${bg})`,
                 backgroundSize: "cover",
@@ -72,7 +72,7 @@ return (
     <div className="flex gap-6 px-4 w-full justify-center overflow-x-auto whitespace-nowrap pb-2">
 
         <Link
-          to="/juego"
+            to="/juego"
             className={buttonBase}
             style={{ ...buttonStyle(btnContenedores), width: BTN_W, height: BTN_H }}
             aria-label="Contenedores"

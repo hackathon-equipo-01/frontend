@@ -28,7 +28,7 @@ export default function Navbar() {
                         <Link to="/metricas" className="bg-green-600 text-white px-3 py-1 rounded-lg hover:bg-green-700 transition-all shadow-sm">
                             📊 Métricas
                         </Link>
-                     </>
+                    </>
                 )}
 
                 {user ? (
