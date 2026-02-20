@@ -1,4 +1,4 @@
-# frontend
+# ♻️ Green Lab — Waste Management System (Backend)
 
 React + Vite frontend for the recycling management system.
 
